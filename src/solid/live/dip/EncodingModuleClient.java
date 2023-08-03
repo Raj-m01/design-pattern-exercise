@@ -11,10 +11,12 @@ import java.io.*;
  */
 public class EncodingModuleClient {
     public static void main(String[] args) throws IOException {
-        EncodingModule encodingModule  = new EncodingModule();
-        BufferedReader reader = new BufferedReader(new FileReader("/Users/raj.maj/Desktop/design pattern tasks/Solid all five/src/solid/live/dip/beforeEncryption.txt"));
-        BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/raj.maj/Desktop/design pattern tasks/Solid all five/src/solid/live/dip/afterEncryption.txt"));
-        encodingModule.encodeWithFiles(reader, writer);
+        EncodingModule encodingModule  = new EncodingModule(new DataFileReader()
+                                        , new DataFileWriter()
+                                        , new NetworkReader()
+                                        , new DatabaseWriter());
+        encodingModule.encodeWithFiles();
         encodingModule.encodeBasedOnNetworkAndDatabase();
+
     }
 }
