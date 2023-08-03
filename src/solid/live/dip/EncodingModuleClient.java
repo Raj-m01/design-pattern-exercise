@@ -1,6 +1,6 @@
 package solid.live.dip;
 
-import java.io.IOException;
+import java.io.*;
 
 /**
  * Created by IntelliJ IDEA.
@@ -12,7 +12,9 @@ import java.io.IOException;
 public class EncodingModuleClient {
     public static void main(String[] args) throws IOException {
         EncodingModule encodingModule  = new EncodingModule();
-        encodingModule.encodeWithFiles();
+        BufferedReader reader = new BufferedReader(new FileReader("/Users/raj.maj/Desktop/design pattern tasks/Solid all five/src/solid/live/dip/beforeEncryption.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/raj.maj/Desktop/design pattern tasks/Solid all five/src/solid/live/dip/afterEncryption.txt"));
+        encodingModule.encodeWithFiles(reader, writer);
         encodingModule.encodeBasedOnNetworkAndDatabase();
     }
 }

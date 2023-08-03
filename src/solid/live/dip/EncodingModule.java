@@ -15,10 +15,10 @@ import java.net.URL;
  * To change this template use File | Settings | File Templates.
  */
 public class EncodingModule {
-    public void encodeWithFiles() {
+    public void encodeWithFiles(BufferedReader reader, BufferedWriter writer) {
         try {
-            BufferedReader reader = new BufferedReader(new FileReader("/Users/goyalamit/Sandbox/training/src/solid_2011/live/dip/beforeEncryption.txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/goyalamit/Sandbox/training/src/solid_2011/live/dip/afterEncryption.txt"));
+//            BufferedReader reader = new BufferedReader(new FileReader("/Users/goyalamit/Sandbox/training/src/solid_2011/live/dip/beforeEncryption.txt"));
+//            BufferedWriter writer = new BufferedWriter(new FileWriter("/Users/goyalamit/Sandbox/training/src/solid_2011/live/dip/afterEncryption.txt"));
             String aLine;
             while ((aLine = reader.readLine()) != null) {
                 String encodedLine = Base64.encodeBytes(aLine.getBytes());
@@ -66,3 +66,7 @@ public class EncodingModule {
     }
 }
 
+/**
+ * My issues:
+ * BuffferReader and BufferWrite is dependent on file reader and writer
+ */
