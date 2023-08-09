@@ -7,7 +7,7 @@ package net.media.training.designpattern.observer;
  * Time: 10:13:41 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Cat implements Observer{
+public class Cat implements Character {
     private boolean outdoors;
     private boolean feelingWarm;
     private boolean feelingTired;

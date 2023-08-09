@@ -1,7 +1,5 @@
 package net.media.training.designpattern.observer;
 
-//import jdk.internal.misc.OSEnvironment;
-
 /**
  * Created by IntelliJ IDEA.
  * User: joelrosario
@@ -9,7 +7,7 @@ package net.media.training.designpattern.observer;
  * Time: 9:35:35 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Person implements Observer {
+public class Person implements Character {
     private boolean feelingWarm;
     private boolean outdoors;
     private boolean feelingTired;

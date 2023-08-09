@@ -1,4 +1,6 @@
 package net.media.training.designpattern.observer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -8,51 +10,72 @@ package net.media.training.designpattern.observer;
  * To change this template use File | Settings | File Templates.
  */
 public class CharacterTestClient {
-    private Cat cat;
-    private Person person;
-    private Dog dog;
-    private Robot robot;
+    private List<Character> characters = new ArrayList<>();
 
     public CharacterTestClient() {
-        robot = new Robot();
-        dog = new Dog();
-        person = new Person();
-        cat = new Cat();
+        characters.add(new Robot());
+        characters.add(new Dog());
+        characters.add(new Person());
+        characters.add(new Cat());
+    }
+
+    public void addCharacter(Character character) {
+        characters.add(character);
+    }
+
+    public void removeCharacter(Character character) {
+        characters.remove(character);
     }
 
     public boolean testOutdoors() {
-        robot.goOutdoors();
-        person.goOutdoors();
-        cat.goOutdoors();
-        dog.goOutdoors();
+        for (Character character : characters) {
+            character.goOutdoors();
+        }
 
-        return robot.isOutdoors() && person.isOutdoors() && cat.isOutdoors() && dog.isOutdoors();
+        boolean allCharactersOutdoor = true;
+        for (Character character : characters) {
+            allCharactersOutdoor &&= character.isOutdoors();
+        }
+        
+        return allCharactersOutdoor;
     }
 
     public boolean testSunRose() {
-        robot.notifySunRose();
-        person.notifySunRose();
-        cat.notifySunRose();
-        dog.notifySunRose();
+        for (Character character : characters) {
+            character.notifySunRose();
+        }
 
-        return robot.isFeelingWarm() && person.isFeelingWarm() && cat.isFeelingWarm() && dog.isFeelingWarm();
+        boolean allCharactersFeelingWarm = true;
+        for (Character character : characters) {
+            allCharactersFeelingWarm &&= character.isFeelingWarm();
+        }
+        
+        return allCharactersFeelingWarm;
     }
 
     public boolean testSunSet() {
-        robot.notifySunSet();
-        person.notifySunSet();
-        cat.notifySunSet();
-        dog.notifySunSet();
+        for (Character character : characters) {
+            character.notifySunSet();
+        }
 
-        return !robot.isFeelingWarm() && !person.isFeelingWarm() && !cat.isFeelingWarm() && !dog.isFeelingWarm();
+        boolean anyCharacterFeelingWarm = false;
+        for (Character character : characters) {
+            anyCharacterFeelingWarm ||= character.isFeelingWarm();
+        }
+        
+        return !anyCharacterFeelingWarm;
     }
 
     public boolean testIndoors() {
-        robot.goIndoors();
-        person.goIndoors();
-        cat.goIndoors();
-        dog.goIndoors();
+        for (Character character : characters) {
+            character.goIndoors();
+        }
 
-        return !robot.isOutdoors() && !person.isOutdoors() && !cat.isOutdoors() && !dog.isOutdoors();
+        boolean anyCharacterOutdoor = false;
+        for (Character character : characters) {
+            anyCharacterOutdoor ||= character.isOutdoors();
+        }
+        
+        return !anyCharacterOutdoor;
     }
 }

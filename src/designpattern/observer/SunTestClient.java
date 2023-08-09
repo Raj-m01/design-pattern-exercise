@@ -1,4 +1,6 @@
 package net.media.training.designpattern.observer;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -8,37 +10,31 @@ package net.media.training.designpattern.observer;
  * To change this template use File | Settings | File Templates.
  */
 public class SunTestClient {
-    private final Person person;
-    private final Cat cat;
-    private final Dog dog;
-    private final Robot robot;
-
-    private boolean personWentOut = false;
-    private boolean robotWentOut = false;
-    private boolean catWentOut;
-    private boolean dogWentOut;
+    private final List<Character> characters = new ArrayList<>();
+    
+    private static Map<Character, boolean> characterOutMap = new Hashtable<Character, boolean>();
     private Sun sun;
 
     public SunTestClient() {
-        this.person = new Person();
-        this.cat = new Cat();
-        this.dog = new Dog();
-        this.robot = new Robot();
-        this.sun = new Sun(robot, person, dog, cat);
+        characters.add(new Person());
+        characters.add(new Cat());
+        characters.add(new Dog());
+        characters.add(new Robot());
+        this.sun = new Sun(characters);
     }
 
-    public void aFewCharactersGoOutdoors() {
-        person.goOutdoors();
-        robot.goOutdoors();
-        personWentOut = true;
-        robotWentOut = true;
+    public void aFewCharactersGoOutdoors(List<Character> outsideCharacters) {
+        for(Character character : outsideCharacters) {
+            character.goOutdoors();
+            characterOutMap.put(character, true);
+        }
     }
 
-    public void aFewOtherCharactersGoOutdoors() {
-        cat.goOutdoors();
-        dog.goOutdoors();
-        catWentOut = true;
-        dogWentOut = true;
+    public void aFewOtherCharactersGoOutdoors(List<Character> outsideCharacters) {
+        for(Character character : outsideCharacters) {
+            character.goOutdoors();
+            characterOutMap.put(character, true);
+        }
     }
 
     public void sunRise() {
@@ -50,36 +46,24 @@ public class SunTestClient {
     }
 
     public boolean charactersWhoWereOutAreFeelTired() {
-        if (person.isOutdoors() && !person.isFeelingTired())
-            return false;
-        if (robot.isOutdoors() && !robot.isFeelingTired())
-            return false;
-        if (dog.isOutdoors() && !dog.isFeelingTired())
-            return false;
-        if (dog.isOutdoors() && !dog.isFeelingTired())
-            return false;
+        for(Character character : outsideCharacters) {
+            if(character.isOutdoors() && !character.isFeelingTired())
+                return false;
+        }
 
         return true;
     }
 
     public boolean outdoorsCharactersFeelWarm() {
-        if (person.isOutdoors() && !person.isFeelingWarm())
-            return false;
-        if (cat.isOutdoors() && !cat.isFeelingWarm())
-            return false;
-        if (dog.isOutdoors() && !dog.isFeelingWarm())
-            return false;
-        if (robot.isOutdoors() && !robot.isFeelingWarm())
-            return false;
+        for(Character character : outsideCharacters) {
+            if(character.isOutdoors() && !character.isFeelingWarm())
+                return false;
+        }
 
-        if (!person.isOutdoors() && person.isFeelingWarm())
-            return false;
-        if (!cat.isOutdoors() && cat.isFeelingWarm())
-            return false;
-        if (!dog.isOutdoors() && dog.isFeelingWarm())
-            return false;
-        if (!robot.isOutdoors() && robot.isFeelingWarm())
-            return false;
+        for(Character character : outsideCharacters) {
+            if(!character.isOutdoors() && character.isFeelingWarm())
+                return false;
+        }
 
         return true;
     }

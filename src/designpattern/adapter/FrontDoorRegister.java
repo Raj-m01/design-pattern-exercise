@@ -9,14 +9,14 @@ package net.media.training.designpattern.adapter;
  */
 public class FrontDoorRegister {
     private LeaveRecord leaveRecord;
-
+//    1st
     public FrontDoorRegister(LeaveRecord leaveRecord) {
         this.leaveRecord = leaveRecord;
     }
 
     public String getDisplayWallOfShame() {
         String name = "";
-
+//2nd
         name = leaveRecord.getMostAbsentEmployee();
         return name + " has been the most absent employee, shame!";
     }

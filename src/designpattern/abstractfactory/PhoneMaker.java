@@ -11,31 +11,24 @@ public class PhoneMaker {
 
     public Case buildPhone(String phoneType) {
         MotherBoard motherBoard;
-        if (phoneType.equals("Android")) {
-            motherBoard = new AndroidMotherBoard();
-            motherBoard.attachBattery(new Battery());
-            motherBoard.attachProcessor(new AndroidProcessor());
-        } else {
-            motherBoard = new IphoneMotherBoard();
-            motherBoard.attachBattery(new Battery());
-            motherBoard.attachProcessor(new IphoneProcessor());
-        }
-
         Screen screen;
-        if (phoneType.equals("Android")) {
-            screen = new AndroidScreen();
-        } else {
-            screen = new IphoneScreen();
-        }
-
         Case phoneCase;
         if (phoneType.equals("Android")) {
-            phoneCase = new AndroidCase();
+            AndroidPhone android=new AndroidPhone();
+            motherBoard=android.MotherBoard();
+            screen = android.Screen();
+            phoneCase=android.Case(motherBoard,screen);
+
         } else {
-            phoneCase = new IphoneCase();
+            Iphone iphone=new Iphone();
+            motherBoard=iphone.MotherBoard();
+            screen = iphone.Screen();
+            phoneCase=iphone.Case(motherBoard,screen);
+
+
         }
-        phoneCase.attachMotherBoard(motherBoard);
-        phoneCase.attachScreen(screen);
         return phoneCase;
+
+
     }
 }

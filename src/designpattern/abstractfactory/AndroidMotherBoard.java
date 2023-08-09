@@ -8,4 +8,7 @@ package net.media.training.designpattern.abstractfactory;
  * To change this template use File | Settings | File Templates.
  */
 public class AndroidMotherBoard extends MotherBoard {
+//public class AndroidMotherBoard implements PhoneMaker{
+
 }
+

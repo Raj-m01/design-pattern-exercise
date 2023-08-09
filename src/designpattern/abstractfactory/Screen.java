@@ -8,4 +8,5 @@ package net.media.training.designpattern.abstractfactory;
  * To change this template use File | Settings | File Templates.
  */
 public class Screen {
+
 }

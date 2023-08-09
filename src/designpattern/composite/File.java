@@ -7,7 +7,7 @@ package net.media.training.designpattern.composite;
  * Time: 9:18:04 PM
  * To change this template use pre_refactoring.File | Settings | pre_refactoring.File Templates.
  */
-public class File implements FolderItem {
+public class File implements Component {
     private final String name;
     private int size;
     private Directory parent;
@@ -31,5 +31,13 @@ public class File implements FolderItem {
 
     public Directory getParent() {
         return parent;
+    }
+
+    public void delete() {
+        getParent().removeEntry(this);
+    }
+
+    private isTraversible() {
+        return false;
     }
 }
